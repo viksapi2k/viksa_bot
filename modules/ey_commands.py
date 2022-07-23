@@ -33,14 +33,6 @@ async def help(ctx):
     print(f"[INFO] Использование команды: {prefix}help пользователем", ctx.author.name, "с id:",ctx.author.id)
 
 @bot.command()
-async def support(ctx):
-    print(f"[DingoLingo] Использование команды: {prefix}support пользователем", ctx.author.name, "с id:",ctx.author.id)
-    embed = discord.Embed(title='Поддержать копеечкой', description='  ', colour=0xFFE933)
-    embed.add_field(name="Сбербанк", value="2202 2007 5652 1165", inline=False)
-    embed.add_field(name="Qiwi", value="+79193372486", inline=False)
-    await ctx.send(embed=embed)
-
-@bot.command()
 @has_permissions(administrator=True)
 async def rules(ctx):
     if os.path.exists('rules.txt'):
@@ -56,5 +48,5 @@ async def rules(ctx):
 @bot.command()
 async def github(ctx):
     print(f"[DingoLingo] Использование команды: {prefix}github пользователем", ctx.author.name, "с id:",ctx.author.id)
-    embed = discord.Embed(title='Github', description="Страница в Github: https://github.com/Eyndjl/eybie", colour=0xFFE933)
+    embed = discord.Embed(title='Github', description="Страница Eybie в Github: https://github.com/Eyndjl/eybie", colour=0xFFE933)
     await ctx.send(embed=embed)
