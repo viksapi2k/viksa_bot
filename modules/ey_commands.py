@@ -1,52 +1,38 @@
 from modules.api import *
 
-print("[INFO] Успешно загружен EY_commands")
+module_loaded(f"Ey_CommandPack")
 
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        embed = discord.Embed(title="Уупс...", description="Данная функция временно недоступна или вовсе не реализована :(", colour=0xFFE933)
-        await ctx.send(embed=embed)
-
-@bot.command()
+@bot.command(name="info", description="Основная информация (Время работы, разработчики, версия бота)")
 async def info(ctx):
+    cursession = str(datetime.timedelta(seconds=int(round(time.time()-startTime))))
     embed = discord.Embed(title="Eybie", description=f"Текущая версия: {eybie_ver}", colour=0xFFE933)
-    embed.add_field(name="Время работы", value=f"{str(datetime.timedelta(seconds=int(round(time.time()-startTime))))}", inline=False)
+    embed.add_field(name="Время работы", value=f"{cursession}", inline=False)
     embed.add_field(name="Разработчик", value="Eyndjl#2356", inline=True)
-    embed.add_field(name="Оф.сайт", value="Недоступен", inline=True)
-    await ctx.send(embed=embed)
-    print(f"[INFO] Использование команды: {prefix}info пользователем", ctx.author.name, "с id:",ctx.author.id)
+    embed.add_field(name="Оф.сайт", value="https://eyndjl.github.io", inline=True)
+    await ctx.response.send_message(embed=embed, ephemeral=True)
+    print(f"[INFO] Использование команды: /info пользователем", ctx.author.name, "с id:",ctx.author.id)
 
-@bot.command()
-async def version_info(ctx):
-    embed = discord.Embed(title="Информация о версии", description=f"Текущая версия: {eybie_ver}\nДата выпуска: {eybie_reldate}\nКодовое имя: {eybie_codename}", colour=0xFFE933)
-    await ctx.send(embed=embed)
-    print(f"[INFO] Использование команды: {prefix}version_info пользователем", ctx.author.name, "с id:",ctx.author.id)
-
-@bot.remove_command('help')
-@bot.command()
-async def help(ctx):
-    embed = discord.Embed(title="Помощь Eybie", description="", colour=0xFFE933)
-    embed.add_field(name="Основные", value=";info - Основная информация(аптайм, разработчики и версия)\n;version_info - Подробности о версии;\n;support - Поддержать копеечкой", inline=False)
-    embed.add_field(name="Администрирование", value=";warn - Добавить варн пользователю", inline=True)
-    await ctx.send(embed=embed)
-    print(f"[INFO] Использование команды: {prefix}help пользователем", ctx.author.name, "с id:",ctx.author.id)
-
-@bot.command()
+@bot.command(name="rules", description="Вывод правил сервера") #Оставлю так пока не найду алтернативное решение
 @has_permissions(administrator=True)
 async def rules(ctx):
     if os.path.exists('rules.txt'):
         with open("rules.txt", "r") as file:
             rules_txt = file.read()
     else:
-        rules_txt = "Файл rules.txt пуст :("
+        rules_txt = "Файл \"rules.txt\" отсутствует в корне Eybie :("
     embed = discord.Embed(title=' ', description=f'`{rules_txt}`', colour=0xFFE933)
+    embed1 = discord.Embed(title=message_sent, description=" ", colour=0xFFE933)
     await ctx.send(embed=embed)
-    await ctx.message.delete()
-    print(f"[INFO] Использование команды: {prefix}rules пользователем", ctx.author.name, "с id:",ctx.author.id)
+    await ctx.response.send_message(embed=embed1, ephemeral=True)
+    print(f"[INFO] Использование команды: /rules пользователем", ctx.author.name, "с id:",ctx.author.id)
 
-@bot.command()
+@rules.error
+async def rules_error(ctx, error):
+    embed = discord.Embed(title=error_text, description=" ", colour=0xFFE933)
+    await ctx.response.send_message(embed=embed, ephemeral=True)
+
+@bot.command(name="github", description="Вывод Github'a Eybie")
 async def github(ctx):
-    print(f"[DingoLingo] Использование команды: {prefix}github пользователем", ctx.author.name, "с id:",ctx.author.id)
+    print(f"[DingoLingo] Использование команды: /github пользователем", ctx.author.name, "с id:",ctx.author.id)
     embed = discord.Embed(title='Github', description="Страница Eybie в Github: https://github.com/Eyndjl/eybie", colour=0xFFE933)
-    await ctx.send(embed=embed)
+    await ctx.response.send_message(embed=embed)

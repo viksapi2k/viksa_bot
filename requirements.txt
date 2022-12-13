@@ -1,19 +1,11 @@
-youtube-dl
 more-itertools
 setproctitle
-more-itertools
 colorama
-importlib-metadata
 libtorrent
-more-itertools
+importlib-metadata
 ordered-set
 orjson
-py-cord
 async-timeout
-aiohttp
-contextlib2
-asyncio
-aiohttp
 contextlib2
 py-cord
 py-cord[voice]
@@ -22,3 +14,4 @@ aiohttp
 asyncio
 beautifulsoup4
 spotipy
+art
