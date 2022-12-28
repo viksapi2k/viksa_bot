@@ -1,5 +1,4 @@
 ![](https://raw.githubusercontent.com/Eyndjl/eybie/master/logo.png)
-# Работа над данной веткой не ведётся. Данный репозиторий - основа для модулей.
 # Eybie Discord.py(PyCord) bot
 Мой бот на Pycord. Изначально он был на Discord.py, но пришлось перейти на Pycord из-за отсутствия некоторых функций в Discord.py. 
 
