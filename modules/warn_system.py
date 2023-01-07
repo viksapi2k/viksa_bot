@@ -12,7 +12,7 @@ module_loaded(f"Ey_WarnSystem")
 @bot.command(name="warn", description="Выдать предупреждение пользователю")
 @has_permissions(administrator=True)
 async def warn(ctx, member: discord.Member, reason: str):
-    print(f"[INFO] Использование команды: /warn пользователем", ctx.author.name, "с id:",ctx.author.id)
+    logging.info(f"Использование команды: /warn пользователем {ctx.author.name} с id: {ctx.author.id} | Причина: \"{reason}\"") 
     serverid = ctx.guild.id
     if not os.path.isdir(f"database/servers/{serverid}"):
         os.mkdir(f'database/servers/{serverid}')
@@ -26,7 +26,6 @@ async def warn(ctx, member: discord.Member, reason: str):
     sqlite_conn.commit()
     warns = len(cursor.execute(f"SELECT * FROM {userid}").fetchall())
     embed = discord.Embed(title=f'Пользователю {member.name} выдано предупреждение.', description=f'Причина: {reason}', colour=0xFFE933)
-    print(f"[WARN_SYSTEM] Пользователю {member.name} выдано предупреждение с причиной: \"{reason}\"")
     await ctx.response.send_message(embed=embed)
     if warns >= 3:
         embed2 = discord.Embed(title="Пользователю был ограничен доступ к текстовому и голосовому чату на 7 дней за нарушения правил.", description='', colour=0xFFE933)
@@ -46,7 +45,7 @@ async def warn_error(ctx, error):
 @bot.command(name="warns", description="Отобразить список предупреждений пользователя")
 @has_permissions(administrator=True)
 async def warns(ctx, user:discord.User):
-    print(f"[INFO] Использование команды: /warns пользователем", ctx.author.name, "с id:",ctx.author.id)
+    logging.info(f"Использование команды: /warns пользователем {ctx.author.name} с id: {ctx.author.id}")
     serverid = ctx.guild.id
     sqlite_conn = sqlite3.connect(f'database/servers/{serverid}/users.db')
     cursor = sqlite_conn.cursor()
@@ -57,7 +56,7 @@ async def warns(ctx, user:discord.User):
     reasons_form = str(reasons_clean[:len(reasons_clean)-1])
     embed = discord.Embed(title=f'Предупреждения пользователя {user.name}', description='  ', colour=0xFFE933)
     embed.add_field(name=f"Количество предупреждений: {warns}, причины:", value=f"{reasons_form}", inline=False)
-    await ctx.response.send_message(embed=embed)
+    await ctx.response.send_message(embed=embed, ephemeral=True)
 
 @warns.error
 async def warns_error(ctx, error):

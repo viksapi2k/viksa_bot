@@ -10,9 +10,9 @@ async def info(ctx):
     embed.add_field(name="Разработчик", value="Eyndjl#2356", inline=True)
     embed.add_field(name="Оф.сайт", value="https://eyndjl.github.io", inline=True)
     await ctx.response.send_message(embed=embed, ephemeral=True)
-    print(f"[INFO] Использование команды: /info пользователем", ctx.author.name, "с id:",ctx.author.id)
+    logging.info(f"Использование команды: /info пользователем {ctx.author.name} с id: {ctx.author.id}")
 
-@bot.command(name="rules", description="Вывод правил сервера") #Оставлю так пока не найду алтернативное решение
+@bot.command(name="rules", description="Вывод правил сервера") #Оставлю так пока не найду альтернативное решение
 @has_permissions(administrator=True)
 async def rules(ctx):
     if os.path.exists('rules.txt'):
@@ -24,7 +24,7 @@ async def rules(ctx):
     embed1 = discord.Embed(title=message_sent, description=" ", colour=0xFFE933)
     await ctx.send(embed=embed)
     await ctx.response.send_message(embed=embed1, ephemeral=True)
-    print(f"[INFO] Использование команды: /rules пользователем", ctx.author.name, "с id:",ctx.author.id)
+    logging.info(f"Использование команды: /rules пользователем {ctx.author.name} с id: {ctx.author.id}")
 
 @rules.error
 async def rules_error(ctx, error):
@@ -33,6 +33,6 @@ async def rules_error(ctx, error):
 
 @bot.command(name="github", description="Вывод Github'a Eybie")
 async def github(ctx):
-    print(f"[DingoLingo] Использование команды: /github пользователем", ctx.author.name, "с id:",ctx.author.id)
+    logging.info(f"Использование команды: /github пользователем {ctx.author.name} с id: {ctx.author.id} | Спасибки <3")
     embed = discord.Embed(title='Github', description="Страница Eybie в Github: https://github.com/Eyndjl/eybie", colour=0xFFE933)
     await ctx.response.send_message(embed=embed)

@@ -19,13 +19,13 @@ splashes = [
 
 #Настройки
 settings = {
-	'token': 'TOKEN',
-	'prefix': ';' #остатки старого кода. TODO: Глянуть что зависит от старого префикса и удалить.
+	'token': 'TOKEN'
 }
 
 #Информация о текущей версии бота
 version_info = {
-	'version': '3.0.0',
-	'rel_date': '12.12.2022',
-	'codename': 'Passion Fruit'
+	'version': '3.0.1',
+	'rel_date': '07.01.2023',
+	'codename': 'Passion Fruit',
+	'distribution': 'Main'
 }
