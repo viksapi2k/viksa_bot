@@ -24,8 +24,8 @@ settings = {
 
 #Информация о текущей версии бота
 version_info = {
-	'version': '3.0.1',
-	'rel_date': '07.01.2023',
+	'version': '3.0.2',
+	'rel_date': '10.01.2023',
 	'codename': 'Passion Fruit',
 	'distribution': 'Main'
 }

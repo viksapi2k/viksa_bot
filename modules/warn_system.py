@@ -1,12 +1,17 @@
 from modules.api import *
 import sqlite3
 
+logging.info("Загружен модуль WARN_SYSTEM")
+
+#Настройки
+WARNSCOUNT = 3 #Максимальное число предупреждений, при достижении указанного числа выдаётся блокировка
+BLOCKDURATION = 10080 #Длительность блокировки, указывается в минутах
+
 #Создание необходимых папок
 if not os.path.isdir(f"database/servers"):
+    logging.info("Папка \"database/servers\" не найдена. Создание папки...")
     os.mkdir(f'database')
     os.mkdir(f'database/servers')
-
-module_loaded(f"Ey_WarnSystem")
 
 #Система варнов на sqlite3.
 @bot.command(name="warn", description="Выдать предупреждение пользователю")
@@ -27,9 +32,10 @@ async def warn(ctx, member: discord.Member, reason: str):
     warns = len(cursor.execute(f"SELECT * FROM {userid}").fetchall())
     embed = discord.Embed(title=f'Пользователю {member.name} выдано предупреждение.', description=f'Причина: {reason}', colour=0xFFE933)
     await ctx.response.send_message(embed=embed)
-    if warns >= 3:
+    if warns >= WARNSCOUNT:
+        logging.info(f"Пользователь {member.name} заблокирован (warns >= {WARNSCOUNT})")
         embed2 = discord.Embed(title="Пользователю был ограничен доступ к текстовому и голосовому чату на 7 дней за нарушения правил.", description='', colour=0xFFE933)
-        await member.timeout_for(datetime.timedelta(minutes=10080)) #Таймаут на 7 дней, указал в минутах потому что я так хочу :/
+        await member.timeout_for(datetime.timedelta(minutes=BLOCKDURATION))
         await ctx.send(embed=embed2)
         cursor.execute(f"DELETE FROM {userid}")
         sqlite_conn.commit()

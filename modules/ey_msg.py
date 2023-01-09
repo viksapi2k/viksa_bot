@@ -1,6 +1,6 @@
 from modules.api import *
 
-module_loaded(f"Ey_Messages")
+logging.info("Загружен модуль EY_MSG")
 
 @bot.command(name="say", description="Вывод сообщения от имени бота")
 @has_permissions(administrator=True)

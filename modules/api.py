@@ -9,6 +9,7 @@ from config_eybie import settings, version_info, splashes
 if not os.path.isdir(f"logs"):
     os.mkdir(f'logs')
 
+#Архивирование логов предыдущей сессии (при наличии)
 if os.path.isfile("logs/latest.log"):
     with zipfile.ZipFile(f'logs/{str(datetime.datetime.now())}.zip', 'w') as log_archive:
         log_archive.write('logs/latest.log')
@@ -30,17 +31,15 @@ message_sent = "Сообщение отправлено ✅"
 
 #Стандартные функции
 logging.basicConfig(
-    level=logging.INFO,
-    format="(%(asctime)s) [%(levelname)s] %(message)s",
+    level=logging.INFO, #Уровень логирования
+    format="(%(asctime)s) [%(levelname)s] %(message)s", #Формат логов
     handlers=[
-        logging.FileHandler("logs/latest.log"),
+        logging.FileHandler("logs/latest.log"), #Директория логов
         logging.StreamHandler()
     ]
 )
 
-def module_loaded(module_name):
-    return logging.info(f"Загружен {module_name}")
-
+#Обновление статуса
 @bot.event
 async def on_ready():
     while True:
@@ -48,6 +47,7 @@ async def on_ready():
         await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"v{eybie_ver} | {splashes[random_splash]}"))
         await asleep(7)
 
+#Стандартные команды
 @bot.command(name="devinf", description="Краткая информация для разработчиков")
 @has_permissions(administrator=True)
 async def devinf(ctx):
