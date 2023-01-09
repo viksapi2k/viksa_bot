@@ -19,12 +19,13 @@ splashes = [
 
 #Настройки
 settings = {
-	'token': 'TOKEN'
+	'token': 'TOKEN',
+	'bot_name': 'Eybie' #Имя Eybie
 }
 
 #Информация о текущей версии бота
 version_info = {
-	'version': '3.0.2',
+	'version': '3.0.3',
 	'rel_date': '10.01.2023',
 	'codename': 'Passion Fruit',
 	'distribution': 'Main'

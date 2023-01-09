@@ -20,6 +20,7 @@ eybie_codename = version_info['codename']
 eybie_reldate = version_info['rel_date']
 eybie_ver = version_info['version']
 eybie_distro = version_info['distribution']
+eybie_name = settings['bot_name']
 
 #Необходимо для работоспособности основных функций
 bot = discord.Bot()
@@ -42,6 +43,9 @@ logging.basicConfig(
 #Обновление статуса
 @bot.event
 async def on_ready():
+    logging.info("Установка имени...")
+    await bot.user.edit(username=eybie_name) #Изменение имени согласно настройкам
+    logging.info(f"Имя Eybie изменено на \"{eybie_name}\"")
     while True:
         random_splash = random.randint(0, len(splashes) - 1)
         await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"v{eybie_ver} | {splashes[random_splash]}"))
