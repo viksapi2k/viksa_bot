@@ -1,4 +1,4 @@
-from modules.api import *
+from modules.eybie import *
 
 logging.info("Загружен модуль EY_COMMANDS")
 
@@ -6,6 +6,7 @@ logging.info("Загружен модуль EY_COMMANDS")
 async def info(ctx):
     cursession = str(datetime.timedelta(seconds=int(round(time.time()-startTime))))
     embed = discord.Embed(title="Eybie", description=f"Текущая версия: {eybie_ver}", colour=0xFFE933)
+    embed.add_field(name="Прочее", value=f"Дистрибутив: {eybie_distro}, статус профайлера {PROFSTATE}")
     embed.add_field(name="Время работы", value=f"{cursession}", inline=False)
     embed.add_field(name="Разработчик", value="Eyndjl#2356", inline=True)
     embed.add_field(name="Оф.сайт", value="https://eyndjl.github.io", inline=True)

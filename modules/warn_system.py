@@ -1,4 +1,4 @@
-from modules.api import *
+from modules.eybie import *
 import sqlite3
 
 logging.info("Загружен модуль WARN_SYSTEM")

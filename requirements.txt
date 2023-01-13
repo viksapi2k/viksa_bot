@@ -1,7 +1,6 @@
 more-itertools
 setproctitle
 colorama
-libtorrent
 importlib-metadata
 ordered-set
 orjson

@@ -1,4 +1,4 @@
-from modules.api import *
+from modules.eybie import *
 
 logging.info("Загружен модуль EY_MSG")
 

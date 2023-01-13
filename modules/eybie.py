@@ -40,6 +40,10 @@ logging.basicConfig(
     ]
 )
 
+#PROFSTATE = "PROFSTATE" #основа для будущего подобия профайлера (если не передумаю)
+
+#ARGS = "ARGS" #основа для параметров запуска
+
 #Обновление статуса
 @bot.event
 async def on_ready():
@@ -70,4 +74,5 @@ async def devinf_error(ctx, error):
 art.tprint(f"|Eybie  v{eybie_ver}|") #Поставил два пробела из-за слишком малого расстояния между символами в art.tprint
 print("============================================================\n")
 sleep(3)
+logging.info("Eybie запущен!")
 logging.info("Запуск модулей...")
