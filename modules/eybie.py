@@ -5,6 +5,8 @@ from asyncio import sleep as asleep
 from discord.ext.commands import has_permissions
 from config_eybie import settings, version_info, splashes
 
+#Место для проверки скриптов, это номально если тут пусто :)
+
 #Необходимые директории для нормальной работы
 if not os.path.isdir(f"logs"):
     os.mkdir(f'logs')
@@ -72,7 +74,12 @@ async def devinf_error(ctx, error):
 
 #Скрипты при запуске
 art.tprint(f"|Eybie  v{eybie_ver}|") #Поставил два пробела из-за слишком малого расстояния между символами в art.tprint
-print("============================================================\n")
-sleep(3)
-logging.info("Eybie запущен!")
+print("========================================================================\n")
+sleep(0.5)
+if os.path.isfile("changelog.txt"):
+    print(open("changelog.txt", "r", encoding='UTF-8').read() + "\n")
+else:
+    print("Отсутствует changelog.txt!\n")
+sleep(2)
+logging.info(f"Eybie v{eybie_ver} запущен!")
 logging.info("Запуск модулей...")
