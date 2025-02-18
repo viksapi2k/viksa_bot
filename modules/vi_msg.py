@@ -1,6 +1,6 @@
-from modules.eybie import *
+from modules.viksa import *
 
-logging.info("Загружен модуль EY_MSG")
+logging.info("Загружен модуль VI_MSG")
 
 @bot.command(name="say", description="Вывод сообщения от имени бота")
 @has_permissions(administrator=True)
