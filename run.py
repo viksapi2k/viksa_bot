@@ -1,7 +1,7 @@
-from modules.eybie import *
+from modules.viksa import *
 
-from modules.ey_msg import *
-from modules.ey_commands import *
+from modules.vi_msg import *
+from modules.vi_commands import *
 from modules.warn_system import *
 
 if settings['token'] == "TOKEN" or "":
