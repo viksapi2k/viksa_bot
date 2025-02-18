@@ -1,6 +1,6 @@
 from modules.viksa import *
 
-logging.info("Загружен модуль EY_COMMANDS")
+logging.info("Загружен модуль VI_COMMANDS")
 
 @bot.command(name="info", description="Основная информация (Время работы, разработчики, версия бота)")
 async def info(ctx):
