@@ -1,6 +1,6 @@
 ![](https://raw.githubusercontent.com/Eyndjl/eybie/master/logo.png)
-# Eybie
-Eybie. Бот для Discord, написанный на Python 3 с использованием Pycord. Стандартный набор модулей.
+# viksa bot
+Eybie-bot fork. There are no changes to the code yet. Performance has not been checked, probably does not work. 
 
-Документация: 
-https://eybie-docs.readthedocs.io/ru/latest/index.html#
+Docs (Unfortunately, in Russian. Use a translator): 
+https://eybie-docs.readthedocs.io/en/latest/index.html#
