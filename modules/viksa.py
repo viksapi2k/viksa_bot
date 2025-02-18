@@ -18,12 +18,12 @@ if os.path.isfile("logs/latest.log"):
     os.remove("logs/latest.log")
 
 #Информация о текущей версии бота
-eybie_codename = version_info['codename']
-eybie_reldate = version_info['rel_date']
-eybie_ver = version_info['version']
-eybie_distro = version_info['distribution']
-eybie_name = settings['bot_name']
-eybie_avatar = open(settings['avatar_path'], 'rb').read()
+viksa_codename = version_info['codename']
+viksa_reldate = version_info['rel_date']
+viksa_ver = version_info['version']
+viksa_distro = version_info['distribution']
+viksa_name = settings['bot_name']
+viksa_avatar = open(settings['avatar_path'], 'rb').read()
 
 #Необходимо для работоспособности основных функций
 bot = discord.Bot()
@@ -51,11 +51,11 @@ logging.basicConfig(
 @bot.event
 async def on_ready():
     logging.info("Установка имени...")
-    await bot.user.edit(username=eybie_name) #Изменение имени согласно настройкам
-    logging.info(f"Имя Eybie изменено на \"{eybie_name}\"")
+    await bot.user.edit(username=viksa_name) #Изменение имени согласно настройкам
+    logging.info(f"Имя Viksa изменено на \"{viksa_name}\"")
     logging.info("Установка аватара...")
-    await bot.user.edit(avatar=eybie_avatar)
-    logging.info(f"Аватар Eybie изменён на \"{settings['avatar_path']}\"")
+    await bot.user.edit(avatar=viksa_avatar)
+    logging.info(f"Аватар Viksa изменён на \"{settings['avatar_path']}\"")
     while True:
         random_splash = random.randint(0, len(splashes) - 1)
         await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"v{eybie_ver} | {splashes[random_splash]}"))
@@ -66,7 +66,7 @@ async def on_ready():
 @has_permissions(administrator=True)
 async def devinf(ctx):
     cursession = str(datetime.timedelta(seconds=int(round(time.time()-startTime))))
-    embed = discord.Embed(title="Eybie", description=f"Версия: {eybie_ver} \n Кодовое имя: {eybie_codename} \n Дистрибутив: {eybie_distro} \n Дата релиза: {eybie_reldate} \n Длительность текущей сессии: {cursession}", colour=0xFFE933)
+    embed = discord.Embed(title="Viksa", description=f"Версия: {viksa_ver} \n Кодовое имя: {viksa_codename} \n Дистрибутив: {viksa_distro} \n Дата релиза: {viksa_reldate} \n Длительность текущей сессии: {cursession}", colour=0xFFE933)
     embed.add_field(name="Список сплешей", value=f"{splashes}", inline=True)
     await ctx.response.send_message(embed=embed, ephemeral=True)
     logging.info(f"Использование команды: /devinf пользователем {ctx.author.name}, с id: {ctx.author.id}")
@@ -77,7 +77,7 @@ async def devinf_error(ctx, error):
     await ctx.response.send_message(embed=embed, ephemeral=True)
 
 #Скрипты при запуске
-art.tprint(f"|Eybie  v{eybie_ver}|") #Поставил два пробела из-за слишком малого расстояния между символами в art.tprint
+art.tprint(f"|Viksa  v{viksa_ver}|") #Поставил два пробела из-за слишком малого расстояния между символами в art.tprint
 print("========================================================================\n")
 sleep(0.5)
 if os.path.isfile("changelog.txt"):
@@ -85,5 +85,5 @@ if os.path.isfile("changelog.txt"):
 else:
     print("Отсутствует changelog.txt!\n")
 sleep(2)
-logging.info(f"Eybie v{eybie_ver} запущен!")
+logging.info(f"Viksa v{viksa_ver} запущен!")
 logging.info("Запуск модулей...")
