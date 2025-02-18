@@ -9,8 +9,8 @@ splashes = [
 #Settings
 settings = {
 	'token': 'TOKEN',
-	'bot_name': 'Viksa', #Имя Eybie
-	'avatar_path':'avatar.png' #Путь до желаемой аватарки [png, jpg]
+	'bot_name': 'Viksa', #Viksa's name
+	'avatar_path':'avatar.png' #Path to avatar [png, jpg]
 }
 
 #Version info
