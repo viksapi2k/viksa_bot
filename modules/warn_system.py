@@ -1,4 +1,4 @@
-from modules.eybie import *
+from modules.viksa import *
 import sqlite3
 
 logging.info("Загружен модуль WARN_SYSTEM")
