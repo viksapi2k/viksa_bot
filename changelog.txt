@@ -1,7 +1,2 @@
-CHANGELOG EYBIE V3.0.6
-----------------------
-Модуль eybie.py:
-1. Возможность изменить аватарку Eybie не заходя на Discord Developer Portal
-
-Скрипт запуска:
-1. [CORE] Удалены импорты, не позволявшие запустить Eybie Core
+Viksa-bot v1.0.0
+The names have been changed, nothing more. 
