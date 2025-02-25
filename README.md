@@ -2,7 +2,7 @@
 Eybie-bot fork. There are no changes to the code yet. Performance has not been checked, probably does not work. 
 
 Docs (Unfortunately, in Russian. Use a translator): 
-https://eybie-docs.readthedocs.io/en/latest/index.html#
+https://eybie-docs.readthedocs.io/ru/latest/index.html#
 
 
 
