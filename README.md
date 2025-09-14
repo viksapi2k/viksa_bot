@@ -1,5 +1,5 @@
 # viksa bot
-Eybie-bot fork. There are no changes to the code yet. Performance has not been checked, probably does not work. 
+Eybie-bot fork. Performance has not been checked, idk how but it works after 3 years. 
 
 Docs (Unfortunately, in Russian. Use a translator): 
 https://eybie-docs.readthedocs.io/ru/latest/index.html#
