@@ -16,7 +16,7 @@ settings = {
 #Version info
 version_info = {
 	'version': '1.0.0',
-	'rel_date': '18.02.2025',
-	'codename': 'Not set',
+	'rel_date': '14.09.2025',
+	'codename': 'Dragonfruit',
 	'distribution': 'Main'
 }

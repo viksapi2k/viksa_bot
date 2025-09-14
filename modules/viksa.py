@@ -3,21 +3,19 @@ from time import sleep
 from discord.ext import commands
 from asyncio import sleep as asleep
 from discord.ext.commands import has_permissions
-from config_eybie import settings, version_info, splashes
+from config_viksa import settings, version_info, splashes
 
-#Место для проверки скриптов, это номально если тут пусто :)
-
-#Необходимые директории для нормальной работы
+#Logs dir
 if not os.path.isdir(f"logs"):
     os.mkdir(f'logs')
 
-#Архивирование логов предыдущей сессии (при наличии)
+#Archive logs (if they exist)
 if os.path.isfile("logs/latest.log"):
     with zipfile.ZipFile(f'logs/{str(datetime.datetime.now())}.zip', 'w') as log_archive:
         log_archive.write('logs/latest.log')
     os.remove("logs/latest.log")
 
-#Информация о текущей версии бота
+#Bot version info
 viksa_codename = version_info['codename']
 viksa_reldate = version_info['rel_date']
 viksa_ver = version_info['version']
@@ -25,15 +23,14 @@ viksa_distro = version_info['distribution']
 viksa_name = settings['bot_name']
 viksa_avatar = open(settings['avatar_path'], 'rb').read()
 
-#Необходимо для работоспособности основных функций
+#For main funcs
 bot = discord.Bot()
 startTime = time.time()
 
-#Сокращения сообщений на все случаи жизни
-error_text = "Возникла ошибка при выполнении данной команды :("
-message_sent = "Сообщение отправлено ✅"
+error_text = "Oops... something wrong :("
+message_sent = "Message sent ✅"
 
-#Стандартные функции
+#Default funcs
 logging.basicConfig(
     level=logging.INFO, #Уровень логирования
     format="(%(asctime)s) [%(levelname)s] %(message)s", #Формат логов
@@ -43,47 +40,42 @@ logging.basicConfig(
     ]
 )
 
-#PROFSTATE = "PROFSTATE" #основа для будущего подобия профайлера (если не передумаю)
-
-#ARGS = "ARGS" #основа для параметров запуска
-
-#Скрипты после запуска Eybie
+#Launching startup scripts
 @bot.event
 async def on_ready():
-    logging.info("Установка имени...")
+    logging.info("Changing name...")
     await bot.user.edit(username=viksa_name) #Изменение имени согласно настройкам
-    logging.info(f"Имя Viksa изменено на \"{viksa_name}\"")
-    logging.info("Установка аватара...")
+    logging.info(f"Name changed to \"{viksa_name}\"")
+    logging.info("Changing avatar...")
     await bot.user.edit(avatar=viksa_avatar)
-    logging.info(f"Аватар Viksa изменён на \"{settings['avatar_path']}\"")
+    logging.info(f"Avatar changed to \"{settings['avatar_path']}\"")
     while True:
         random_splash = random.randint(0, len(splashes) - 1)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"v{eybie_ver} | {splashes[random_splash]}"))
+        await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"v{viksa_ver} | {splashes[random_splash]}"))
         await asleep(7)
 
 #Стандартные команды
-@bot.command(name="devinf", description="Краткая информация для разработчиков")
+@bot.command(name="devinf", description="Information for developers")
 @has_permissions(administrator=True)
 async def devinf(ctx):
     cursession = str(datetime.timedelta(seconds=int(round(time.time()-startTime))))
-    embed = discord.Embed(title="Viksa", description=f"Версия: {viksa_ver} \n Кодовое имя: {viksa_codename} \n Дистрибутив: {viksa_distro} \n Дата релиза: {viksa_reldate} \n Длительность текущей сессии: {cursession}", colour=0xFFE933)
-    embed.add_field(name="Список сплешей", value=f"{splashes}", inline=True)
+    embed = discord.Embed(title="Viksa", description=f"Version: {viksa_ver} \n Codename: {viksa_codename} \n Distribution: {viksa_distro} \n Release Date: {viksa_reldate} \n Uptime: {cursession}", colour=0xFFE933)
+    embed.add_field(name="Splashes list:", value=f"{splashes}", inline=True)
     await ctx.response.send_message(embed=embed, ephemeral=True)
-    logging.info(f"Использование команды: /devinf пользователем {ctx.author.name}, с id: {ctx.author.id}")
+    logging.info(f"Command usage: /devinf by{ctx.author.name}, with id: {ctx.author.id}")
 
 @devinf.error
 async def devinf_error(ctx, error):
     embed = discord.Embed(title=error_text, description=" ", colour=0xFFE933)
     await ctx.response.send_message(embed=embed, ephemeral=True)
 
-#Скрипты при запуске
-art.tprint(f"|Viksa  v{viksa_ver}|") #Поставил два пробела из-за слишком малого расстояния между символами в art.tprint
+art.tprint(f"|Viksa  v{viksa_ver}|")
 print("========================================================================\n")
 sleep(0.5)
 if os.path.isfile("changelog.txt"):
     print(open("changelog.txt", "r", encoding='UTF-8').read() + "\n")
 else:
-    print("Отсутствует changelog.txt!\n")
+    print("There is no changelog.txt!\n")
 sleep(2)
-logging.info(f"Viksa v{viksa_ver} запущен!")
-logging.info("Запуск модулей...")
+logging.info(f"Viksa v{viksa_ver} starting!")
+logging.info("Loading modules...")
